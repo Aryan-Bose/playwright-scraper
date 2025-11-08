@@ -1,0 +1,39 @@
+name: Playwright table-sum scraper
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 18.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      # This step name contains the required email
+      - name: Run Playwright scraper for 24f3004686@ds.study.iitm.ac.in
+        run: |
+          Write-Host "Starting Playwright scraper step (label includes email)"
+        shell: pwsh
+
+      - name: Install dependencies (PowerShell)
+        run: |
+          npm ci
+        shell: pwsh
+
+      - name: Install Playwright browsers (PowerShell)
+        run: |
+          npx playwright install --with-deps
+        shell: pwsh
+
+      - name: Run scraper (prints totals in logs) (PowerShell)
+        run: |
+          node sumTables.js
+        shell: pwsh
