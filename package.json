@@ -1,0 +1,11 @@
+{
+  "name": "playwright-scraper",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "scrape": "node sumTables.js"
+  },
+  "dependencies": {
+    "playwright": "^1.44.0"
+  }
+}
